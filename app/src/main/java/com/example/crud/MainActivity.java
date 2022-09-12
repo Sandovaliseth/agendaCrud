@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         //Cerrar lo anterior y salirse de la app
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        finish();
     }
 
 }

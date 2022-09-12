@@ -53,8 +53,8 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Bienvenido", Toast.LENGTH_LONG
                         ).show();
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
                         startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(LoginActivity.this, "Error de credenciales", Toast.LENGTH_LONG
                         ).show();
@@ -66,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         if(sharePreference.revisarSesion()) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
+            finish();
         } else {
             Toast.makeText(LoginActivity.this, "Iniciar sesion", Toast.LENGTH_LONG
             ).show();
