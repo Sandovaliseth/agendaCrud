@@ -14,7 +14,7 @@ public class DbUsuarios extends SQLiteOpenHelper {
 
     Context context;
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NOMBRE = "agenda.db";
+    private static final String DATABASE_NOMBRE = "agendaU.db";
     public static final String TABLE_USUARIOS = "t_usuarios";
 
     public DbUsuarios(@Nullable Context context) {
@@ -54,16 +54,6 @@ public class DbUsuarios extends SQLiteOpenHelper {
             ex.toString();
         }
         return id;
-    }
-
-    public Boolean obtenerCorreoContraseña(Usuarios usuarios) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " +TABLE_USUARIOS+ " WHERE correo=? and contrasena=?", new String[]{usuarios.getCorreo(), usuarios.getContrasena()});
-        if(cursor.getCount()>0) {
-            return true;
-        } else{
-            return false;
-        }
     }
 
 }

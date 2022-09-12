@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,11 +20,13 @@ import com.example.crud.adaptadores.listaContactosAdapter;
 import com.example.crud.db.DbContactos;
 import com.example.crud.db.DbHelper;
 import com.example.crud.entidades.Contactos;
+import com.example.crud.entidades.SharePreference;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    SharedPreferences sharedPreference;
     /*Definir variables
     Button btnCrear;
      */
@@ -33,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPreference = getSharedPreferences("bd_shared", Context.MODE_PRIVATE);
 
         /*llamar o asignar el boton
         btnCrear= findViewById(R.id.btnCrear);
@@ -75,7 +81,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuNuevo:
                 nuevoRegistro();
                 return true;
-
+            case R.id.cerrarSesion:
+                CerrarSesion();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -86,4 +94,16 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NuevoActivity.class);
         startActivity(intent);
     }
+
+    private void CerrarSesion(){
+        sharedPreference.edit().clear().apply();
+
+        Toast.makeText(MainActivity.this, "Sesion finalizada", Toast.LENGTH_LONG
+        ).show();
+        Intent intent = new Intent(this, LoginActivity.class);
+        //Cerrar lo anterior y salirse de la app
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
 }

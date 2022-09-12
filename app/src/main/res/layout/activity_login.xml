@@ -39,6 +39,12 @@
         android:inputType="textPassword"
         tools:ignore="TouchTargetSizeCheck" />
 
+    <CheckBox
+        android:id="@+id/GuardarCredenciales"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recuérdame" />
+
     <Button
         android:id="@+id/btnIniciar"
         android:layout_width="match_parent"

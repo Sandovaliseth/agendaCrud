@@ -2,6 +2,9 @@ package com.example.crud.entidades;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
+
+import com.example.crud.MainActivity;
 
 public class SharePreference {
      Context context;
@@ -15,11 +18,21 @@ public class SharePreference {
     }
 
     public String getSharedPreferences() {
-        return sp.getString("dato", "No se encontro dato");
+        return sp.getString("correo", "Usuario no registrado");
     }
 
-    public void setSharedPreferences(String datoG) {
-        editor.putString("dato", datoG);
+    public void setSharedPreferences(String correo) {
+        editor.putString("correo", correo);
         editor.apply();
     }
+
+    public void guardarSesion(Boolean checked) {
+        editor.putBoolean("llave", checked);
+        editor.apply();
+    }
+
+    public boolean revisarSesion() {
+        return this.sp.getBoolean("llave", false);
+    }
+
 }

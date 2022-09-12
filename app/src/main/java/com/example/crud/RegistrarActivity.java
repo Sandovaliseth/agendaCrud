@@ -37,17 +37,15 @@ public class RegistrarActivity extends AppCompatActivity {
                 String nombreU = nombre.getText().toString();
                 usuarios.setNombre(nombreU);
                 String apellidoU = apellido.getText().toString();
-                usuarios.setNombre(apellidoU);
+                usuarios.setApellido(apellidoU);
                 String correoU = correo.getText().toString();
-                usuarios.setNombre(correoU);
+                usuarios.setCorreo(correoU);
                 String contrasenaU = contrasena.getText().toString();
-                usuarios.setNombre(contrasenaU);
+                usuarios.setContrasena(contrasenaU);
                 long id= dbUsuarios.insertarUsuario(usuarios);
                 if (id>0){
                     Toast.makeText(RegistrarActivity.this, "Registro guardado", Toast.LENGTH_LONG).show();
                     limpiar();
-                } else if (correoU==correoU) {
-                    Toast.makeText(RegistrarActivity.this, "El correo electronico ya existe", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(RegistrarActivity.this, "No se pudo registrar el usuario", Toast.LENGTH_LONG).show();
                 }
