@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         sharePreference= new SharePreference(LoginActivity.this);
 
         dbUsuarios = new DbUsuarios(this);
-
+        usuarios = new Usuarios();
 
         inicarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,14 +49,13 @@ public class LoginActivity extends AppCompatActivity {
                     ).show();
                 } else {
 
-                    String usuario= correo.getText().toString();
+                    String email= correo.getText().toString();
+                    usuarios.setCorreo(email);
                     String contrasenaV= contrasena.getText().toString();
+                    usuarios.setContrasena(contrasenaV);
 
-                    usuarios.getCorreo();
-                    usuarios.getContrasena();
-
-                    Boolean obtenerCorreoycontra = dbUsuarios.obtenerCorreoycontra(usuarios);
-                    if(obtenerCorreoycontra==true){
+                    Boolean validarCC = dbUsuarios.obtenerCorreoycontra(usuarios);
+                    if(validarCC==true){
                         //Guardar las credenciales del usuario logueado
                         sharePreference.guardarSesion(GuardarCredenciales.isChecked());
                         Toast.makeText(LoginActivity.this, "Bienvenido", Toast.LENGTH_LONG
