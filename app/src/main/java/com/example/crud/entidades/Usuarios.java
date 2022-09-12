@@ -6,6 +6,7 @@ public class Usuarios {
     private String apellido;
     private String correo;
     private String contrasena;
+    
 
     public int getId() {
         return id;

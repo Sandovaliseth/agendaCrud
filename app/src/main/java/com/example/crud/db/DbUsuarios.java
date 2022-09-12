@@ -8,7 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.crud.entidades.Contactos;
 import com.example.crud.entidades.Usuarios;
+
+import java.util.ArrayList;
 
 public class DbUsuarios extends SQLiteOpenHelper {
 
@@ -56,4 +59,17 @@ public class DbUsuarios extends SQLiteOpenHelper {
         return id;
     }
 
+    public Boolean obtenerCorreoycontra(Usuarios usuarios){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Usuarios user = null;
+
+        Cursor cursorU = db.rawQuery("SELECT * FROM " + TABLE_USUARIOS + " WHERE correo= '" + usuarios.getCorreo() + "' AND contrasena= '" +usuarios.getContrasena()+"'", null);
+
+        if(cursorU.getCount()>0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

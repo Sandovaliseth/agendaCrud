@@ -20,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText correo, contrasena;
     Button inicarSesion;
     TextView irRegistrar;
+    DbUsuarios dbUsuarios;
     Usuarios usuarios;
     CheckBox GuardarCredenciales;
     SharePreference sharePreference;
@@ -35,6 +36,9 @@ public class LoginActivity extends AppCompatActivity {
         GuardarCredenciales = findViewById(R.id.GuardarCredenciales);
         sharePreference= new SharePreference(LoginActivity.this);
 
+        dbUsuarios = new DbUsuarios(this);
+
+
         inicarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,10 +48,15 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Ingrese la contraseña", Toast.LENGTH_LONG
                     ).show();
                 } else {
-                    String usuario= correo.getText().toString();
-                    String contrasenaValidar= contrasena.getText().toString();
 
-                    if(usuario.equals("santi@gmail.com") && contrasenaValidar.equals("123")){
+                    String usuario= correo.getText().toString();
+                    String contrasenaV= contrasena.getText().toString();
+
+                    usuarios.getCorreo();
+                    usuarios.getContrasena();
+
+                    Boolean obtenerCorreoycontra = dbUsuarios.obtenerCorreoycontra(usuarios);
+                    if(obtenerCorreoycontra==true){
                         //Guardar las credenciales del usuario logueado
                         sharePreference.guardarSesion(GuardarCredenciales.isChecked());
                         Toast.makeText(LoginActivity.this, "Bienvenido", Toast.LENGTH_LONG
