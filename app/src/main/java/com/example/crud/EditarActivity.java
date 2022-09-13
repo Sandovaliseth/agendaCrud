@@ -20,7 +20,7 @@ public class EditarActivity extends AppCompatActivity {
     EditText txtNombre, txtTelefono, txtCorreo;
     Button btnGuarda;
     boolean correcto = false;
-    Contactos contacto;
+    Contactos contacto = new Contactos();
     int id=0;
     FloatingActionButton fabEditar, fabEliminar;
 
@@ -53,7 +53,8 @@ public class EditarActivity extends AppCompatActivity {
         //Consulta para mostrar los datos del usuario seleccionado
         //Ver detalles
         final DbContactos dbContactos = new DbContactos(EditarActivity.this);
-        contacto = dbContactos.verContacto(id);
+        contacto.setId(id);
+        contacto = dbContactos.verContacto(contacto);
 
         if(contacto!=null){
             txtNombre.setText(contacto.getNombre());

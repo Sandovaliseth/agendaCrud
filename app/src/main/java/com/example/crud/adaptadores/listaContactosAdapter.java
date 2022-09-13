@@ -57,7 +57,7 @@ public class listaContactosAdapter extends RecyclerView.Adapter<listaContactosAd
             viewTelefono = itemView.findViewById(R.id.viewTelefono);
             viewCorreo = itemView.findViewById(R.id.viewCorreo);
 
-            //Al presionar un contacto nos envia a detalles
+            //Al presionar un contacto nos envia a detalles y envie el ID
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

@@ -22,7 +22,7 @@ public class VerActivity extends AppCompatActivity {
     Button btnGuarda;
     FloatingActionButton fabEditar, fabEliminar;
 
-    Contactos contacto;
+    Contactos contacto = new Contactos();
     //Variable global
     int id=0;
 
@@ -54,7 +54,8 @@ public class VerActivity extends AppCompatActivity {
         //Consulta para mostrar los datos del usuario seleccionado
         //Ver detalles
         DbContactos dbContactos = new DbContactos(VerActivity.this);
-        contacto = dbContactos.verContacto(id);
+        contacto.setId(id);
+        contacto = dbContactos.verContacto(contacto);
 
         if(contacto!=null){
             txtNombre.setText(contacto.getNombre());

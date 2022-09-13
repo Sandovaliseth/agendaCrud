@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 
 import com.example.crud.NuevoActivity;
 import com.example.crud.entidades.Contactos;
+import com.example.crud.entidades.Usuarios;
 
 import java.util.ArrayList;
 
@@ -64,14 +65,14 @@ public class DbContactos extends DbHelper {
     }
 
     //Seleccionar para ver detalle contacto en otra actividad
-    public Contactos verContacto(int id){
+    public Contactos verContacto(Contactos contactos){
         DbHelper dbHelper= new DbHelper(context);
         SQLiteDatabase db= dbHelper.getWritableDatabase();
 
         Contactos contacto = null;
         Cursor cursorContactos;
 
-        cursorContactos = db.rawQuery("SELECT * FROM " + TABLE_CONTACTOS + " WHERE id= " + id + " LIMIT 1", null);
+        cursorContactos = db.rawQuery("SELECT * FROM " + TABLE_CONTACTOS + " WHERE id= " + contactos.getId() + " LIMIT 1", null);
 
         if(cursorContactos.moveToFirst()){
                 contacto = new Contactos();
